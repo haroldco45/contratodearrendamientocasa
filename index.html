@@ -3,30 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibras Positivas - App de Arrendamientos</title>
+    <title>Vibras Positivas - Contrato Legal Completo</title>
     <style>
-        :root { --vibras: #1a5276; --vibras-light: #d4e6f1; }
-        body { font-family: Arial, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
-        .app-container { max-width: 700px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border-top: 8px solid var(--vibras); }
+        :root { --vibras: #1a5276; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; padding: 20px; }
+        .app-container { max-width: 800px; margin: auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 10px solid var(--vibras); }
         h1 { text-align: center; color: var(--vibras); margin-bottom: 5px; }
-        .sub { text-align: center; font-size: 0.9em; color: #666; margin-bottom: 20px; }
-        .form-section { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
-        label { display: block; font-weight: bold; margin-top: 10px; font-size: 0.9em; }
-        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1em; }
+        .sub { text-align: center; font-size: 0.9em; color: #666; margin-bottom: 25px; font-weight: bold; }
+        .form-section { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; background: #fdfdfd; padding: 20px; border: 1px solid #eee; border-radius: 8px; }
+        label { display: block; font-weight: bold; font-size: 0.85em; color: #444; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; background: #fff; }
+        .full-width { grid-column: span 2; }
+        .btn-group { display: flex; gap: 15px; margin-top: 30px; }
+        button { flex: 1; padding: 18px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1.1em; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
         .btn-gen { background: #28b463; color: white; }
         .btn-print { background: #2e86c1; color: white; display: none; }
-        button:hover { opacity: 0.8; transform: translateY(-2px); }
+        button:hover { transform: translateY(-2px); filter: brightness(1.1); }
         
-        /* AREA LEGAL PARA IMPRIMIR */
-        #contrato-final { display: none; padding: 40px; border: 1px solid #ddd; background: white; margin-top: 20px; text-align: justify; line-height: 1.6; }
-        .encabezado { text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 10px; }
-        
+        /* ESTILOS DE IMPRESIÓN PROFESIONAL */
+        #contrato-final { display: none; padding: 50px; background: white; text-align: justify; line-height: 1.5; font-size: 11pt; color: #000; }
+        .encabezado { text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; font-size: 14pt; border-bottom: 2px solid #000; padding-bottom: 10px; }
+        .clausula { font-weight: bold; text-transform: uppercase; margin-top: 15px; display: block; }
+        .firma-box { margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .linea-firma { border-top: 1px solid #000; padding-top: 10px; margin-top: 60px; }
+
         @media print {
-            .app-container, h1, .sub, .form-section, .btn-group { display: none !important; }
-            #contrato-final { display: block !important; border: none; padding: 0; margin: 0; }
-            body { background: white; }
+            .app-container, .no-print { display: none !important; }
+            #contrato-final { display: block !important; border: none; padding: 0; }
+            @page { margin: 2cm; }
         }
     </style>
 </head>
@@ -34,84 +38,106 @@
 
 <div class="app-container">
     <h1>📝 Vibras Positivas</h1>
-    <div class="sub">Gestor de Contratos Legales - Caucasia, Antioquia</div>
+    <div class="sub">GENERADOR DE CONTRATO DE ARRENDAMIENTO LEGAL (LEY 820 DE 2003)</div>
 
     <div class="form-section">
-        <label>Nombre del Inquilino (Arrendatario):</label>
-        <input type="text" id="nombre_inq" placeholder="Nombre completo">
-        
-        <label>Cédula del Inquilino:</label>
-        <input type="text" id="cc_inq" placeholder="Ej: 1.000.000 de Caucasia">
-
-        <label>Nombre del Fiador (Codeudor):</label>
-        <input type="text" id="nombre_fia" placeholder="Nombre completo">
-
-        <label>Fecha de inicio del contrato:</label>
-        <input type="date" id="fecha_ini">
+        <div class="full-width">
+            <label>Nombre Completo del Arrendatario (Inquilino):</label>
+            <input type="text" id="nombre_inq" placeholder="Ej: Juan Alcides Pérez">
+        </div>
+        <div>
+            <label>Cédula del Inquilino:</label>
+            <input type="text" id="cc_inq" placeholder="Número y lugar de expedición">
+        </div>
+        <div>
+            <label>Nombre del Fiador / Codeudor:</label>
+            <input type="text" id="nombre_fia" placeholder="Quien respalda la deuda">
+        </div>
+        <div>
+            <label>Cédula del Fiador:</label>
+            <input type="text" id="cc_fia" placeholder="Número de cédula">
+        </div>
+        <div>
+            <label>Fecha de Entrega/Inicio:</label>
+            <input type="date" id="fecha_ini">
+        </div>
     </div>
 
     <div class="btn-group">
-        <button class="btn-gen" onclick="armarContrato()">🖋️ Generar Minuta Legal</button>
-        <button id="btnP" class="btn-print" onclick="window.print()">🖨️ Imprimir Papel</button>
+        <button class="btn-gen" onclick="armarContrato()">🖋️ Generar Contrato Completo</button>
+        <button id="btnP" class="btn-print" onclick="window.print()">🖨️ Imprimir Papel Legal</button>
     </div>
 </div>
 
 <div id="contrato-final">
-    <div class="encabezado">CONTRATO DE ARRENDAMIENTO DE VIVIENDA URBANA<br>(Ley 820 de 2003)</div>
+    <div class="encabezado">CONTRATO DE ARRENDAMIENTO DE VIVIENDA URBANA</div>
     
-    <p><strong>ARRENDADOR:</strong> HAROLD MARÍN, mayor de edad, identificado como aparece al pie de su firma.</p>
-    <p><strong>ARRENDATARIO:</strong> <span id="val_nombre_inq"></span>, identificado con C.C. No. <span id="val_cc_inq"></span>.</p>
-    <p><strong>FIADOR/CODEUDOR:</strong> <span id="val_nombre_fia"></span>, identificado con cédula de ciudadanía.</p>
-    
-    <p><strong>LUGAR:</strong> Inmueble ubicado en la <strong>Carrera 21 B No. 13 A - 64, Barrio Colinas del Portal, Caucasia, Antioquia</strong>.</p>
-    
-    <p><strong>PRECIO Y CANON:</strong> El Arrendatario pagará mensualmente la suma de <strong>UN MILLÓN DE PESOS M/CTE ($1.000.000)</strong> dentro de los primeros cinco (5) días de cada periodo.</p>
-    
-    <p><strong>DURACIÓN:</strong> El presente contrato tendrá una vigencia de doce (12) meses a partir del día <span id="val_fecha"></span>.</p>
-    
-    <p><strong>CLÁUSULA PENAL:</strong> En caso de incumplimiento de cualquiera de las partes, la parte incumplida pagará a la otra una suma equivalente a <strong>DOS (2) CÁNONES DE ARRENDAMIENTO ($2.000.000)</strong>, exigibles por la vía ejecutiva.</p>
+    <p>Entre los suscritos a saber: <strong>HAROLD MARÍN</strong>, mayor de edad, domiciliado en Caucasia, identificado con la C.C. No. [SU CÉDULA AQUÍ], quien para efectos de este contrato se denominará el <strong>ARRENDADOR</strong>, y por la otra parte <strong><span id="out_nom"></span></strong>, identificado con C.C. No. <span id="out_cc"></span>, quien se denominará el <strong>ARRENDATARIO</strong>, se ha celebrado el presente contrato de arrendamiento que se rige por las siguientes cláusulas:</p>
 
-    <br><br><br>
-    <div style="display: flex; justify-content: space-between;">
-        <div>
-            __________________________<br>
+    <span class="clausula">PRIMERA - OBJETO:</span>
+    <p>El Arrendador entrega para el uso y goce de vivienda el inmueble ubicado en la <strong>Carrera 21 B No. 13 A - 64, Barrio Colinas del Portal, Caucasia, Antioquia</strong>.</p>
+
+    <span class="clausula">SEGUNDA - CANON DE ARRENDAMIENTO:</span>
+    <p>El Arrendatario pagará mensualmente al Arrendador la suma de <strong>UN MILLÓN DE PESOS M/CTE ($1.000.000)</strong>. El pago deberá realizarse dentro de los primeros cinco (5) días de cada mes calendario.</p>
+
+    <span class="clausula">TERCERA - SERVICIOS PÚBLICOS Y GASTOS:</span>
+    <p>El pago de los servicios de energía eléctrica, acueducto, alcantarillado, aseo y gas natural correrá exclusivamente por cuenta del <strong>ARRENDATARIO</strong>. El incumplimiento en el pago de dos o más recibos será causal de terminación del contrato.</p>
+
+    <span class="clausula">CUARTA - DURACIÓN:</span>
+    <p>El término de duración de este contrato será de <strong>DOCE (12) MESES</strong>, contados a partir del día <span id="out_fec"></span>.</p>
+
+    <span class="clausula">QUINTA - REPARACIONES Y MEJORAS:</span>
+    <p>El Arrendatario se obliga a entregar el inmueble en el mismo estado en que lo recibe. No podrá realizar mejoras o reformas sin autorización previa y escrita del Arrendador. Las mejoras realizadas quedarán a favor del inmueble sin derecho a reembolso.</p>
+
+    <span class="clausula">SEXTA - CLÁUSULA PENAL:</span>
+    <p>El incumplimiento por parte del Arrendatario de cualquiera de las cláusulas de este contrato, o el no pago de los cánones de arrendamiento, dará derecho al Arrendador a cobrar a título de pena la suma de <strong>DOS MILLONES DE PESOS ($2.000.000)</strong>, los cuales serán exigibles por la vía ejecutiva, renunciando el Arrendatario a cualquier requerimiento legal.</p>
+
+    <span class="clausula">SÉPTIMA - CODEUDOR O FIADOR:</span>
+    <p>Para garantizar el cumplimiento de todas las obligaciones, firma como codeudor solidario el señor(a) <strong><span id="out_fia"></span></strong>, identificado con C.C. No. <span id="out_ccfia"></span>.</p>
+
+    <p>Para constancia se firma en el municipio de Caucasia, Antioquia, a los <span id="out_fec2"></span>.</p>
+
+    <div class="firma-box">
+        <div class="linea-firma">
             <strong>HAROLD MARÍN</strong><br>
-            C.C. [Su Cédula aquí]<br>
+            C.C. [SU CÉDULA]<br>
             ARRENDADOR
         </div>
-        <div>
-            __________________________<br>
-            <strong><span id="sign_inq"></span></strong><br>
-            C.C. <span id="sign_cc"></span><br>
+        <div class="linea-firma">
+            <strong><span id="out_nom2"></span></strong><br>
+            C.C. <span id="out_cc2"></span><br>
             ARRENDATARIO
+        </div>
+        <div class="linea-firma">
+            <strong><span id="out_fia2"></span></strong><br>
+            C.C. <span id="out_ccfia2"></span><br>
+            CODEUDOR / FIADOR
         </div>
     </div>
 </div>
 
 <script>
     function armarContrato() {
-        // Capturamos datos
-        let ni = document.getElementById('nombre_inq').value.toUpperCase();
-        let ci = document.getElementById('cc_inq').value;
-        let nf = document.getElementById('nombre_fia').value.toUpperCase();
-        let fi = document.getElementById('fecha_ini').value;
+        const d = (id) => document.getElementById(id).value;
+        const set = (id, val) => document.getElementById(id).innerText = val.toUpperCase();
 
-        // Validamos que no esté vacío
-        if(ni=="" || ci=="") { alert("Don Harold, rellene los datos del inquilino primero."); return; }
+        if(!d('nombre_inq') || !d('cc_inq')) { alert("Faltan datos del inquilino"); return; }
 
-        // Pasamos a la hoja legal
-        document.getElementById('val_nombre_inq').innerText = ni;
-        document.getElementById('val_cc_inq').innerText = ci;
-        document.getElementById('val_nombre_fia').innerText = nf;
-        document.getElementById('val_fecha').innerText = fi;
-        document.getElementById('sign_inq').innerText = ni;
-        document.getElementById('sign_cc').innerText = ci;
+        set('out_nom', d('nombre_inq'));
+        set('out_nom2', d('nombre_inq'));
+        document.getElementById('out_cc').innerText = d('cc_inq');
+        document.getElementById('out_cc2').innerText = d('cc_inq');
+        set('out_fia', d('nombre_fia'));
+        set('out_fia2', d('nombre_fia'));
+        document.getElementById('out_ccfia').innerText = d('cc_fia');
+        document.getElementById('out_ccfia2').innerText = d('cc_fia');
+        document.getElementById('out_fec').innerText = d('fecha_ini');
+        document.getElementById('out_fec2').innerText = d('fecha_ini');
 
-        // Mostramos el botón de imprimir
-        document.getElementById('btnP').style.display = 'block';
-        alert("¡Minuta lista! Ya puede darle al botón azul para imprimir.");
+        document.getElementById('contrato-final').style.display = 'block';
+        document.getElementById('btnP').style.display = 'inline-block';
+        alert("¡CONTRATO COMPLETO GENERADO! Ya puede imprimir.");
     }
 </script>
-
 </body>
 </html>
