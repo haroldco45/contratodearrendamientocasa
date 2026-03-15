@@ -1,61 +1,117 @@
-Para responder a tu solicitud de forma exhaustiva, he recopilado la lista completa de trámites, documentos y gestiones que un **tinterillo** suele realizar en el contexto colombiano. Estos personajes operan principalmente en las zonas aledañas a despachos judiciales, notarías, inspecciones de policía y centros de reclusión.
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibras Positivas - App de Arrendamientos</title>
+    <style>
+        :root { --vibras: #1a5276; --vibras-light: #d4e6f1; }
+        body { font-family: Arial, sans-serif; background-color: #f0f2f5; padding: 20px; color: #333; }
+        .app-container { max-width: 700px; margin: auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); border-top: 8px solid var(--vibras); }
+        h1 { text-align: center; color: var(--vibras); margin-bottom: 5px; }
+        .sub { text-align: center; font-size: 0.9em; color: #666; margin-bottom: 20px; }
+        .form-section { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        label { display: block; font-weight: bold; margin-top: 10px; font-size: 0.9em; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
+        button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: 0.3s; font-size: 1em; }
+        .btn-gen { background: #28b463; color: white; }
+        .btn-print { background: #2e86c1; color: white; display: none; }
+        button:hover { opacity: 0.8; transform: translateY(-2px); }
+        
+        /* AREA LEGAL PARA IMPRIMIR */
+        #contrato-final { display: none; padding: 40px; border: 1px solid #ddd; background: white; margin-top: 20px; text-align: justify; line-height: 1.6; }
+        .encabezado { text-align: center; font-weight: bold; text-transform: uppercase; margin-bottom: 30px; border-bottom: 2px solid #000; padding-bottom: 10px; }
+        
+        @media print {
+            .app-container, h1, .sub, .form-section, .btn-group { display: none !important; }
+            #contrato-final { display: block !important; border: none; padding: 0; margin: 0; }
+            body { background: white; }
+        }
+    </style>
+</head>
+<body>
 
-Aquí tienes el inventario total de sus actuaciones, clasificadas por áreas:
+<div class="app-container">
+    <h1>📝 Vibras Positivas</h1>
+    <div class="sub">Gestor de Contratos Legales - Caucasia, Antioquia</div>
 
----
+    <div class="form-section">
+        <label>Nombre del Inquilino (Arrendatario):</label>
+        <input type="text" id="nombre_inq" placeholder="Nombre completo">
+        
+        <label>Cédula del Inquilino:</label>
+        <input type="text" id="cc_inq" placeholder="Ej: 1.000.000 de Caucasia">
 
-### 1. Trámites ante la Rama Judicial (Justicia Ordinaria)
+        <label>Nombre del Fiador (Codeudor):</label>
+        <input type="text" id="nombre_fia" placeholder="Nombre completo">
 
-* **Acciones de Tutela:** Redacción completa para reclamar derechos fundamentales (salud, debido proceso, petición).
-* **Incidentes de Desacato:** Escritos para denunciar que una tutela ganada no se está cumpliendo.
-* **Demandas de Mínima Cuantía:** Procesos ejecutivos o civiles donde el valor de la pretensión permite actuar sin abogado titulado (generalmente deudas pequeñas).
-* **Memoriales de Impulso:** Cartas dirigidas a los jueces para que "muevan" un proceso que está quieto.
-* **Solicitudes de Copias:** Trámite para obtener piezas procesales de un expediente.
-* **Recursos de Reposición y Apelación:** Escritos básicos para contradecir una decisión judicial inicial.
-* **Poderes Especiales:** Redacción del documento donde el ciudadano autoriza a otra persona para actuar en su nombre.
+        <label>Fecha de inicio del contrato:</label>
+        <input type="date" id="fecha_ini">
+    </div>
 
-### 2. Trámites Notariales y de Registro
+    <div class="btn-group">
+        <button class="btn-gen" onclick="armarContrato()">🖋️ Generar Minuta Legal</button>
+        <button id="btnP" class="btn-print" onclick="window.print()">🖨️ Imprimir Papel</button>
+    </div>
+</div>
 
-* **Minutas de Compraventa:** De vehículos, motocicletas y bienes raíces (casas, lotes).
-* **Promesas de Compraventa:** Contratos previos para asegurar un negocio.
-* **Declaraciones Extrajuicio:** Borradores sobre convivencia (unión libre), dependencia económica, cuidado de hijos o soltería.
-* **Liquidaciones de Sucesión (Simples):** Trámites de herencia que no implican conflicto entre herederos.
-* **Afectaciones a Vivienda Familiar:** Documentos para proteger la casa de embargos.
-* **Cancelación de Hipotecas:** Gestiones para liberar una propiedad una vez pagada la deuda.
+<div id="contrato-final">
+    <div class="encabezado">CONTRATO DE ARRENDAMIENTO DE VIVIENDA URBANA<br>(Ley 820 de 2003)</div>
+    
+    <p><strong>ARRENDADOR:</strong> HAROLD MARÍN, mayor de edad, identificado como aparece al pie de su firma.</p>
+    <p><strong>ARRENDATARIO:</strong> <span id="val_nombre_inq"></span>, identificado con C.C. No. <span id="val_cc_inq"></span>.</p>
+    <p><strong>FIADOR/CODEUDOR:</strong> <span id="val_nombre_fia"></span>, identificado con cédula de ciudadanía.</p>
+    
+    <p><strong>LUGAR:</strong> Inmueble ubicado en la <strong>Carrera 21 B No. 13 A - 64, Barrio Colinas del Portal, Caucasia, Antioquia</strong>.</p>
+    
+    <p><strong>PRECIO Y CANON:</strong> El Arrendatario pagará mensualmente la suma de <strong>UN MILLÓN DE PESOS M/CTE ($1.000.000)</strong> dentro de los primeros cinco (5) días de cada periodo.</p>
+    
+    <p><strong>DURACIÓN:</strong> El presente contrato tendrá una vigencia de doce (12) meses a partir del día <span id="val_fecha"></span>.</p>
+    
+    <p><strong>CLÁUSULA PENAL:</strong> En caso de incumplimiento de cualquiera de las partes, la parte incumplida pagará a la otra una suma equivalente a <strong>DOS (2) CÁNONES DE ARRENDAMIENTO ($2.000.000)</strong>, exigibles por la vía ejecutiva.</p>
 
-### 3. Trámites Administrativos y de Policía
+    <br><br><br>
+    <div style="display: flex; justify-content: space-between;">
+        <div>
+            __________________________<br>
+            <strong>HAROLD MARÍN</strong><br>
+            C.C. [Su Cédula aquí]<br>
+            ARRENDADOR
+        </div>
+        <div>
+            __________________________<br>
+            <strong><span id="sign_inq"></span></strong><br>
+            C.C. <span id="sign_cc"></span><br>
+            ARRENDATARIO
+        </div>
+    </div>
+</div>
 
-* **Derechos de Petición:** Dirigidos a entidades públicas (EPS, DIAN, Alcaldías) o privadas (bancos, telefonía).
-* **Recursos contra Fotomultas:** Impugnación de comparendos de tránsito ante las secretarías de movilidad.
-* **Querellas de Policía:** Denuncias por problemas de linderos, humedades, ruidos o conflictos entre vecinos.
-* **Trámites ante el SISBÉN:** Reclamaciones por puntajes o solicitudes de reencuesta.
-* **Derecho de Petición para Pensiones:** Reclamos a Colpensiones o fondos privados por semanas no contabilizadas.
+<script>
+    function armarContrato() {
+        // Capturamos datos
+        let ni = document.getElementById('nombre_inq').value.toUpperCase();
+        let ci = document.getElementById('cc_inq').value;
+        let nf = document.getElementById('nombre_fia').value.toUpperCase();
+        let fi = document.getElementById('fecha_ini').value;
 
-### 4. Asuntos Penales y Carcelarios
+        // Validamos que no esté vacío
+        if(ni=="" || ci=="") { alert("Don Harold, rellene los datos del inquilino primero."); return; }
 
-* **Denuncias Penales:** Redacción del relato de los hechos para presentar ante la Fiscalía (estafas, hurtos, lesiones).
-* **Solicitudes de Libertad:** Peticiones de libertad condicional, sustitución de medida (casa por cárcel) o redención de pena por trabajo/estudio.
-* **Habeas Corpus:** Acción urgente cuando una persona es capturada de forma ilegal.
-* **Permisos de Salida:** Solicitudes para que un interno pueda asistir a un entierro o cita médica urgente.
+        // Pasamos a la hoja legal
+        document.getElementById('val_nombre_inq').innerText = ni;
+        document.getElementById('val_cc_inq').innerText = ci;
+        document.getElementById('val_nombre_fia').innerText = nf;
+        document.getElementById('val_fecha').innerText = fi;
+        document.getElementById('sign_inq').innerText = ni;
+        document.getElementById('sign_cc').innerText = ci;
 
-### 5. Asuntos Laborales y de Familia
+        // Mostramos el botón de imprimir
+        document.getElementById('btnP').style.display = 'block';
+        alert("¡Minuta lista! Ya puede darle al botón azul para imprimir.");
+    }
+</script>
 
-* **Liquidación de Prestaciones:** Cálculos manuales de cuánto le deben a un empleado por despido o renuncia.
-* **Demandas de Alimentos:** Escritos para fijar, aumentar o disminuir la cuota alimentaria de menores.
-* **Acuerdos de Conciliación:** Borradores para fijar visitas o separaciones de mutuo acuerdo.
-
----
-
-### Terminología Común (Cómo llaman a estos papeles)
-
-En el argot de calle, el tinterillo no habla de "actos jurídicos", sino de:
-
-* **"La vuelta":** El trámite completo.
-* **"La minuta":** El formato base que llenan con tus datos.
-* **"El escrito":** Cualquier documento dirigido a una autoridad.
-* **"El empujón":** Un memorial para que el proceso avance.
-* **"La apelada":** El recurso contra una decisión que no gustó.
-
-> **Nota importante:** Aunque estos trámites son comunes, el tinterillo no tiene tarjeta profesional de abogado. Por ello, para asuntos complejos de alta cuantía o defensa penal técnica, la ley colombiana exige la representación de un abogado titulado y colegiado.
-
-¿Te interesa que redactemos una **estructura base** de alguno de estos documentos (como un derecho de petición o una promesa de compraventa) para que veas cómo se arman?
+</body>
+</html>
